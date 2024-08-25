@@ -1,0 +1,12 @@
+package pages
+
+import (
+	"github.com/Gabriel-Weiss/go_tutorial/views/layouts"
+	"github.com/Gabriel-Weiss/go_tutorial/views/partials"
+)
+
+templ IndexTempl(title string) {
+	@layouts.Layout("Main layout") {
+		@partials.CardTempl(title)
+	}
+}

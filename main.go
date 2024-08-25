@@ -3,21 +3,16 @@ package main
 import (
 	"log"
 
+	"github.com/Gabriel-Weiss/go_tutorial/views/pages"
+	"github.com/a-h/templ"
 	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/template/html/v2"
+	"github.com/gofiber/fiber/v2/middleware/adaptor"
 )
 
 func main() {
-    engine := html.New("./views", ".html")
 
-    app := fiber.New(fiber.Config{
-        Views: engine,
-    })
-    app.Get("/", func(c *fiber.Ctx) error {
-        return c.Render("layouts/main", fiber.Map{
-            "Title": "Hello, World!",
-        }, "index")
-    })
+	app := fiber.New()
+	app.Get("/", adaptor.HTTPHandler(templ.Handler(pages.IndexTempl("Hello world!!!"))))
 
-    log.Fatal(app.Listen(":3000"))
+	log.Fatal(app.Listen(":3000"))
 }

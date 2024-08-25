@@ -25,4 +25,8 @@ go.work.sum
 .env
 
 # air tmp dir
-tmp/
+tmp
+
+# costum
+.vscode
+main.html
