@@ -17,23 +17,17 @@ templ Layout(data string) {
 			<script src="https://unpkg.com/htmx.org@2.0.2" integrity="sha384-Y7hw+L/jvKeWIRRkqWYfPcvVxHzVzn5REgzbawhxAuQGwX1XWe70vji+VSeHOThJ" crossorigin="anonymous"></script>
 			<title>{ data }</title>
 		</head>
-		<body>
-			<section
-				style="font-family: Arial, Helvetica, sans-serif;"
-				class="grid grid-cols-1 grid-rows-10 bg-slate-300 h-screen text-xs"
-			>
-				<header class="bg-white row-span-1 w-full">
-					@partials.HeaderTempl()
-				</header>
-				<main
-					class="row-span-9 w-full h-full overflow-auto grid sm:place-items-center xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 p-2"
-				>
-					{ children... }
-				</main>
-				<footer class="row-span-2 w-full bg-white">
-					@partials.FooterTempl()
-				</footer>
-			</section>
+		// Body not rendering height correctly
+		<body class="h-screen" style="background: #edf2f7;">
+			<header class="bg-white">
+				@partials.HeaderTempl()
+			</header>
+			<main class="my-8 bg-white">
+				{ children... }
+			</main>
+			<footer class="bg-gray-200">
+				@partials.FooterTempl()
+			</footer>
 		</body>
 	</html>
 }
