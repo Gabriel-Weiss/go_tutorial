@@ -3,16 +3,16 @@ package main
 import (
 	"log"
 
-	"github.com/Gabriel-Weiss/go_tutorial/views/pages"
-	"github.com/a-h/templ"
+	"github.com/Gabriel-Weiss/go_tutorial/routes"
 	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/fiber/v2/middleware/adaptor"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 )
 
 func main() {
-
 	app := fiber.New()
-	app.Get("/", adaptor.HTTPHandler(templ.Handler(pages.IndexTempl("Hello world!!!"))))
+	app.Use(cors.New())
+	app.Static("/", "./assets")
+	routes.SetupRoutes(app)
 
 	log.Fatal(app.Listen(":3000"))
 }

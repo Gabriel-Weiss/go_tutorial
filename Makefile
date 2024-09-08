@@ -1,2 +1,2 @@
 run:
-	templ generate && air
+	air
