@@ -1,0 +1,62 @@
+package components
+
+// TODO: Implement the sign in, sign out, and sign up links to show/hide based on the user's authentication status.
+templ HeaderTemplate() {
+	<nav class="">
+		<div class="flex flex-wrap items-center justify-between max-w-screen-xl mx-auto p-4">
+			<a href="/products" class="flex items-center space-x-3 rtl:space-x-reverse">
+				<img src="/assets/android-chrome-192x192.png" class="h-8" alt="Site Logo"/>
+				<span class="self-center text-2xl font-semibold whitespace-nowrap">Shopee</span>
+			</a>
+			<div class="flex items-center md:order-2 space-x-1 md:space-x-2 rtl:space-x-reverse">
+				<a href="/carts" class="text-gray-800 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5 focus:outline-none">
+					<img width="25" height="25" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAADzklEQVR4nO2Yf2gTVxzAn/tDhtAxoSobduwPoa3O/qC1MhdM3q0rFKkMsWNqSVvYhgjiX2OmydaVtbZWapXWHxXF9l6MUNg0KXR/+EcN5kIpVMkl98yaLFXTtPlxuaRjs/9Y37ikUWcqXDpt7iQf+MBxf3zffe4d748DIEeOHDmyyqaBB3s2XfTN5Pf5/Ot7vbVAaWy8MO3P7/OR93u95OMzU8Rs5/40M7h7dHzqPaAE8vt8fvHh87o9pOC0m1jseEmOGRubfhfInfW93tq8bo9/3Qn3o3Xt7tqbDFduYbBHjBix4W+BErnJ4K8Tu8DgW0CJ/GrFHyQDuDghZA1QIntNwpM6U4xUG+c9FB23QTo+QqE4DdF8F4Xmj0Fa0FK0UFc9JKjgYHRbtSnyIZATB4f5IIX+IknnlzG+jLEFio7NQjrGUXTMBunYCIViNERCF4WEZPQ1oa76mqCCpjcc/c1vQWvmAYmIdI3CK4wSCkUfQ8Q/ohB/D6LoLcrIm6Ax0gdR5GeI+KMQhQ9AxNd8bgqX11yPFrS2knckBRy5EWpflQDjcvLLGEmKIsOSAg6ev1+h6ZgiNT3exarO6cmdpx4yu87MWFXngmOqgZBVfTnCqK9GJ6nBmBvS8QBE8X9WIwAaw2MSPyKypsrALZbpMCl9Jpe0JWnJS5a24IWyn3CovM3trezwsDtO+iaqeh7advX7b6sG5qy7Lwdt6qvhCc0Qz2roqBciPpRxAAr3SwwAoOYEDmcSILo9oSvNT/Qv6yTbRA2uxyVtOFDa/oe7omtqckePj9l59oH10/P+26pLAevuK3OMejA4SQ2F3RCFA9RQ8LDkgC9PcbY3HqD/r1tTGlKyCYuXLNQ7NZID6ntdJ+UWsEV3d4PkgC86nJ/JKkDPRkAmbG11ra3Qc09lE2BwSD2BngN/wVH5BLDST6AUmjbn73IJKPrRcSTjgHKd66h8Alh1xgElP7hUcgnYkskJlKLw+/t5pce5xWwHFOnZUMYP/2wXdNiT7YDilZxALwQMZz+A7V95wHGsy3ZA0UpOoBRlOqzOdkBhC1u54oDhO66PvrvILVQaVj+g2MD+XWxwdIL/g8XOXRf/UpgZPDo67tgMlIbFzgXEgBsTzgKgRCxLAYp8+yIWO2dKfUKK3IXRccdmC8Pxz3/8rq5mBt95PRF2zmRmXLOKDEhxqLG5q6GxmbyoeA/IdG4aDY1Ns+Lwffu/SphYSNs8B2Q6N40GbVMgbaHG5hkg07mStrpB29Qp17lp1NfXr00sJr4xbVNAvBbvAZnOzZHjbedf5PTvpg+FQXcAAAAASUVORK5CYII=" alt="shopping-cart"/>
+					<img width="25" height="25" hidden src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEUUlEQVR4nO2YfWgbdRjHb74UqRQmzDURawUHbdeaJbbUOrsmd9PglInIKr6UvoCKDAT/EZcls7jNdq5zHXa6ZHZdchc7CXNrMrY/9I8ylwSRoSTN/VLaLOlb2uyStLluMJB1j1zSxJK07pK26XXkCx8Ix93zez73e/gFDsNyySWXXOKpN0EeYWAP4caICgN4CMtGCnUjbxRqvROburzjT3R6dmVa51VyajNO3QoR1Cxw4BQ7Ku+Hx7DVzuZTvvFNXV7Y2OmBZ08MgcVGey029E2f1V3AtwbePV1MkLNsvPk4Oyl2olIH+SkPmODhp7Sju8U6rxID2LAsAe7Nc80XHB2GouODYLGjGDba2t/vu+8bfO1c5DncwN5Obn4piUJy6nGRzver+PQIcIh0Iz9jrfBIxgLc2BQcHR7Pbxscyz88uMtiRy9Y7MjDSVyyoo/+79la/S0JQc3eWar5ZInis76NIp3PGm9enMB3HtNdfxRbqfTZ0LuxXUC/LXWP/Mx0LUGx/9yv+QQkOylqtzvE2htJzY+svMQvV5F4fowisMiM1v3Evo6T7F3ezc9T18OAqM0GWZF4s3f67u7eGXjFyA4TZMSKk5FLBBUhcUPEQpDsPYJiIRUBSbxvCgX+W3ixZiNpMv+ckQW5PgjFHdeh6LR39SQ+vBC4mpnATCrG6SUIA06FYQcVhJdJBl40MFBlCIBMPwXSs34kp5jPcIp5D6dCyp29jEx5LlzU2srzD3LvxZuHsyFALEpoEYIxqKCJ3wj94K5UfD0Eym89czXHxmD7d36o/T4AdVoG5N0hUPSEQaGfAcIwAziZPQHcyPTzHCLYUK2h56QqBNsS0DH2x5AkIdW4QXZwCKraPFDd4YOazjF4iRPXBqCumwF5TxAU+hDgJDc6GQpQzEmeAhimbENMOgIcz0dxpVChTmYAytUDUPElgvIDf0PFQSdIjt0AyQkfSLtGQXZqHKp+nIDqM5NQow/ADkNgFqcYP2EIfMJb4K0O2rraAuVJbI2jieOMUjZPiXpAwVtgz3H6iNAEtqj+epK3AH5oYLugBNTOIJZOtra68irV9D3BCGgcfE+ghbuAwsIRcPI/geKRf+W6LBSB0gOOvWkLyFSuT4Uj4JSnLSD5wlUrFIEt6ZxA8ZR87i7Yto+eW2uBUrXzZtrNJ3ZBhYbXWqAskxNogYBp7QWcJzMX2IdUay1QmskJFI9UheRrLVCy31mVsYDpmuuZj7XoTpUm+wJlGuftMo2jHVtOzHb6PPeVwmxHl6/84XgaW2+x2OlZTmBdNv9ACJht9IXoCNnQlYt/DhRh6y19VneJ2YbCiQ+/WcZsQ9eWLcGNj8WOTGYbzWZdwI5+x1YqHzS1HGloaoGFcNeEWjclDU3Nk1zxt/e8EyW6UGPLFCbQuilpaGz2pyzU1DKBCbQur61uaGxuF2rdlNTX1+dFF+PeWGOzn/vNXcMEWjeXXB70/Asq3UktRwX6hQAAAABJRU5ErkJggg==" alt="shopping-cart-loaded"/>
+				</a>
+				<a href="/signin" class="text-gray-800 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5 focus:outline-none">Sign in</a>
+				<a href="/signout" class="text-gray-800 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5 focus:outline-none">Sign out</a>
+				<a href="/signup" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Sign up</a>
+				<button data-collapse-toggle="mega-menu" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="mega-menu" aria-expanded="false">
+					<span class="sr-only">Open main menu</span>
+					<svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+						<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"></path>
+					</svg>
+				</button>
+			</div>
+			<div id="mega-menu" class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1">
+				<ul class="flex flex-col mt-4 font-medium md:flex-row md:mt-0 md:space-x-8 rtl:space-x-reverse">
+					<li>
+						<a href="/products" class="block py-2 px-3 text-blue-600 text-center border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-600 md:p-0">Home</a>
+					</li>
+					<li>
+						<button
+							hx-get="/categories"
+							hx-target="#categories-dropdown"
+							id="categories-dropdown-button"
+							data-dropdown-toggle="categories-dropdown"
+							class="flex items-center justify-between w-full py-2 px-3 font-medium text-gray-900 border-b border-gray-100 md:w-auto hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-600 md:p-0"
+						>
+							Categories 
+							<svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+								<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"></path>
+							</svg>
+						</button>
+						<div id="categories-dropdown" class="absolute z-10 grid hidden w-auto grid-cols-2 text-sm bg-white border border-gray-100 rounded-lg shadow-md md:grid-cols-3"></div>
+					</li>
+					<li>
+						<a href="/about" class="block py-2 px-3 text-gray-900 text-center border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-600 md:p-0">About Us</a>
+					</li>
+					<li>
+						<a href="/contact" class="block py-2 px-3 text-gray-900 text-center border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-600 md:p-0">Contacts</a>
+					</li>
+					<li>
+						<a href="/shopee/users" class="block py-2 px-3 text-gray-900 text-center border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-600 md:p-0">Users</a>
+					</li>
+					<li>
+						<a href="/shopee/carts" class="block py-2 px-3 text-gray-900 text-center border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-600 md:p-0">Carts</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+}

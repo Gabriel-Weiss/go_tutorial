@@ -1,0 +1,28 @@
+package components
+
+import "github.com/Gabriel-Weiss/go_tutorial/services"
+
+templ categoriesError(err string) {
+	<div>{ err }</div>
+}
+
+templ categoriesSuccess(categories []string) {
+	<div class="p-4 pb-0 text-gray-900 md:pb-4">
+		<ul class="space-y-4" aria-labelledby="categories-dropdown-button">
+			for _, category := range categories {
+				<li>
+					<a href={ templ.URL("/products/category/" + category) } class="text-gray-500 hover:text-blue-600">{ category }</a>
+				</li>
+			}
+		</ul>
+	</div>
+}
+
+templ CategoriesTemplate() {
+	{{ categories, err := services.GetAllCategories() }}
+	if err != nil {
+		@categoriesError(err.Error())
+	} else {
+		@categoriesSuccess(categories)
+	}
+}

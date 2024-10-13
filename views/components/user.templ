@@ -1,0 +1,28 @@
+package components
+
+import (
+	"github.com/Gabriel-Weiss/go_tutorial/models"
+	"strconv"
+)
+
+templ UserComponent(user models.User) {
+	<a href={ templ.URL("/users/" + strconv.Itoa(user.ID)) } class="block">
+		<li class="flex flex-col p-5 bg-white border rounded-lg">
+			<span class="text-lg capitalize font-bold text-black">{ user.Name.FirstName } { user.Name.LastName }</span>
+			<dl class="max-w-md text-gray-900 divide-y divide-gray-200 ps-5 mt-2 space-y-1 list-decimal list-inside">
+				<div class="flex flex-col pb-3">
+					<dt class="mb-1 text-gray-500 md:text-lg">Email address</dt>
+					<dd class="text-lg font-semibold">{ user.Email }</dd>
+				</div>
+				<div class="flex flex-col py-3">
+					<dt class="mb-1 text-gray-500 md:text-lg">Home address</dt>
+					<dd class="text-lg font-semibold">{ strconv.Itoa(user.Address.Number) } { user.Address.Street }, { user.Address.City }, { user.Address.ZipCode }</dd>
+				</div>
+				<div class="flex flex-col pt-3">
+					<dt class="mb-1 text-gray-500 md:text-lg">Phone number</dt>
+					<dd class="text-lg font-semibold">{ user.Phone }</dd>
+				</div>
+			</dl>
+		</li>
+	</a>
+}

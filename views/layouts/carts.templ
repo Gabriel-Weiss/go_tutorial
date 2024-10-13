@@ -1,0 +1,32 @@
+package layouts
+
+import (
+	"github.com/Gabriel-Weiss/go_tutorial/models"
+	"github.com/Gabriel-Weiss/go_tutorial/services"
+	"github.com/Gabriel-Weiss/go_tutorial/views/components"
+)
+
+templ cartsError(err string) {
+	<div class="container mx-auto mt-6">{ err }</div>
+}
+
+templ cartsSuccess(carts []models.Cart) {
+	if len(carts) == 0 {
+		<div class="container mx-auto mt-6">No carts found</div>
+	} else {
+		<ul class="container mx-auto mt-6 list-disc list-inside">
+			for _, cart := range carts {
+				@components.CartComponent(cart)
+			}
+		</ul>
+	}
+}
+
+templ CartsTemplate() {
+	{{ carts, err := services.GetAllCarts() }}
+	if err != nil {
+		@cartsError(err.Error())
+	} else {
+		@cartsSuccess(carts)
+	}
+}

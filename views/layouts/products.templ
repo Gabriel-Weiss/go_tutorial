@@ -1,0 +1,36 @@
+package layouts
+
+import (
+	"github.com/Gabriel-Weiss/go_tutorial/models"
+	"github.com/Gabriel-Weiss/go_tutorial/services"
+	"github.com/Gabriel-Weiss/go_tutorial/views/components"
+)
+
+templ productsError(err string) {
+	<div class="container mx-auto mt-6">{ err }</div>
+}
+
+templ productsSuccess(products []models.Product) {
+	<div class="container mx-auto mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+		for _, product := range products {
+			@components.ProductTemplate(product)
+		}
+	</div>
+}
+
+templ ProductsTemplate(category string) {
+	{{	
+		var products []models.Product
+		var err error
+		if category == "" {
+			products, err = services.GetAllProducts()
+		} else {
+			products, err = services.GetProductsInCategory(category)
+		}
+	}}
+	if err != nil {
+		@productsError(err.Error())
+	} else {
+		@productsSuccess(products)
+	}
+}

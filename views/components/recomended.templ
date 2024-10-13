@@ -1,0 +1,71 @@
+package components
+
+import (
+	"fmt"
+	"github.com/Gabriel-Weiss/go_tutorial/models"
+	"github.com/Gabriel-Weiss/go_tutorial/services"
+	"strconv"
+)
+
+css marqueeClass(image string, index int, items int, duration int) {
+	background: { templ.SafeCSSProperty(fmt.Sprintf("center / cover no-repeat url('%s')",image)) };
+	left: { templ.SafeCSSProperty(fmt.Sprintf("max(calc(20rem * %d), 100%%)", items)) };
+	animation-name: { templ.SafeCSSProperty(fmt.Sprintf("slideImages")) };
+	animation-duration: { templ.SafeCSSProperty(fmt.Sprintf("%ds", duration)) };
+	animation-timing-function: { templ.SafeCSSProperty(fmt.Sprintf("linear")) };
+	animation-delay: { templ.SafeCSSProperty(fmt.Sprintf("calc(%[1]ds / %[2]d * (%[2]d - %[3]d + 1) * -1)", duration, items, index)) };
+	animation-iteration-count: { templ.SafeCSSProperty(fmt.Sprintf("infinite")) };
+}
+
+css pauseMarquee() {
+	animation-play-state: paused;
+}
+
+css maskImg() {
+	mask-image: linear-gradient(to right, transparent, black 20% 80%,transparent);
+}
+
+templ marqueeError(err string) {
+	<div class="container mx-auto mt-6">{ err }</div>
+}
+
+templ marqueeSuccess(index int, item models.Product, itemsNr int) {
+	<style type="text/css">
+		@keyframes slideImages {
+			to {
+				left: calc(20rem * -1);
+			}
+		}
+	</style>
+	<div
+		hx-target="main"
+		hx-get={ string(templ.URL("/shop/" + strconv.Itoa(item.ID))) }
+		hx-push-url={ string(templ.URL("/shop/" + strconv.Itoa(item.ID))) }
+		class={ "size-64 hover:scale-110 hover:z-10 absolute cursor-pointer", 
+			marqueeClass(item.Image, index, itemsNr, 30) }
+	>
+		<div class="w-full h-full relative">
+			<div class="absolute flex flex-col items-end h-fit bottom-2 right-0 left-0 pr-2 text-slate-500 font-extrabold text-lg bg-gradient-to-r from-transparent to-slate-300">
+				<div class="text-black">{ item.Title }</div>
+				@RatingTemplate(item.Rating.Rate)
+				<div class="text-black">${ fmt.Sprintf("%.2f", item.Price) }</div>
+			</div>
+		</div>
+	</div>
+}
+
+templ RecommendedTemplate(category string) {
+	{{ products, err := services.GetProductsInCategory(category) }}
+	if err != nil {
+		@marqueeError(err.Error())
+	} else {
+		<div
+			class={ "w-full h-[21rem] flex items-center gap-x-1 overflow-hidden relative",
+			maskImg }
+		>
+			for index, product := range products {
+				@marqueeSuccess(index, product, len(products))
+			}
+		</div>
+	}
+}

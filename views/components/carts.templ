@@ -1,0 +1,33 @@
+package components
+
+import (
+	"github.com/Gabriel-Weiss/go_tutorial/models"
+	"github.com/Gabriel-Weiss/go_tutorial/services"
+	"strconv"
+	"time"
+)
+
+templ cartsByUserError(err string) {
+	<div>{ err }</div>
+}
+
+templ cartsByUserSuccess(carts []models.Cart) {
+	for _, cart := range carts {
+		{{ parsedDate, _ := time.Parse("2006-01-02T15:04:05Z", cart.Date) }}
+		<div>id: { strconv.Itoa(cart.ID) } userId: { strconv.Itoa(cart.UserID) } at: { parsedDate.Format("2006-01-02 15:04:05") }</div>
+		<ul class="list-none list-inside">
+			for _, product := range cart.Products {
+				<li>product id: { strconv.Itoa(product.ProductID) } - qty:{ strconv.Itoa(product.Quantity) }</li>
+			}
+		</ul>
+	}
+}
+
+templ UserCartsTemplate(id string) {
+	{{ carts, err := services.GetCartByUserId(id) }}
+	if err != nil {
+		@cartsByUserError(err.Error())
+	} else {
+		@cartsByUserSuccess(carts)
+	}
+}

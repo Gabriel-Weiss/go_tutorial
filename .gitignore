@@ -18,6 +18,7 @@
 # vendor/
 
 # Go workspace file
+go.sum
 go.work
 go.work.sum
 
@@ -34,3 +35,4 @@ tmp/main
 # costum
 .vscode
 main.html
+cspell.json

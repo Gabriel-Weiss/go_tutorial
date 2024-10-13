@@ -1,0 +1,34 @@
+package layouts
+
+import (
+	"fmt"
+	"github.com/Gabriel-Weiss/go_tutorial/models"
+	"github.com/Gabriel-Weiss/go_tutorial/services"
+	"github.com/Gabriel-Weiss/go_tutorial/views/components"
+	"strconv"
+)
+
+templ userDetailsError(err string) {
+	<div>{ err }</div>
+}
+
+templ userDetailsSuccess(user models.User) {
+	<h1>{ user.Name.FirstName } { user.Name.LastName }</h1>
+	<p>{ user.Email }</p>
+	<p>{ fmt.Sprintf("%d", user.Address.Number) } { user.Address.Street }, { user.Address.City }, { user.Address.ZipCode }</p>
+	<p>{ user.Phone }</p>
+	<div>
+		@components.UserCartsTemplate(strconv.Itoa(user.ID))
+	</div>
+}
+
+templ UserDetailsTemplate(id string) {
+	{{ user, err := services.GetUserById(id) }}
+	<div class="container mx-auto mt-6">
+		if err != nil {
+			@userDetailsError(err.Error())
+		} else {
+			@userDetailsSuccess(user)
+		}
+	</div>
+}
