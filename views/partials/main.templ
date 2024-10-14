@@ -2,15 +2,26 @@ package partials
 
 import "github.com/Gabriel-Weiss/go_tutorial/models"
 
-templ MainTempl(cards []models.Item) {
-	<section class="container mx-auto px-6">
-		// .Sport Shoes
-		// .Back Pack & .Games
-		// .Grid Container
-		<section class="mt-16">
-			<h3 class="text-gray-600 text-2xl font-medium">Fashions</h3>
-			<section class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6">
-				for _, card := range cards {
+templ MainTempl() {
+	<section class="container mx-auto px-6 overflow-x-hidden">
+		<section class="mt-16 text-center">
+			<h4 class="text-red-600 text-lg italic font-serif font-medium animate-pulse">At Shopee there's alway Black Friday!!!</h4>
+			<h1 class="text-[#29157E] text-6xl tracking-tight font-mono font-black animate-pulse">Grab Your Favorites Before They're Gone</h1>
+			<h3 class="text-[#29157E] font-medium">Sport Shoes</h3>
+			<section class="w-full flex gap-x-4 overflow-x-auto snap-x pb-2" style="scrollbar-color:#29157E #FFF4FA; scrollbar-width:thin;">
+				for _, card := range models.Data {
+					@CardTempl(card)
+				}
+			</section>
+			<h3 class="text-[#29157E] font-medium">Clothes Mix</h3>
+			<section class="w-full flex gap-x-4 overflow-x-auto snap-x pb-2" style="scrollbar-color:#29157E #FFF4FA; scrollbar-width:thin;">
+				for _, card := range models.Data {
+					@CardTempl(card)
+				}
+			</section>
+			<h3 class="text-[#29157E] font-medium">Accesories</h3>
+			<section class="w-full flex gap-x-4 overflow-x-auto snap-x pb-2" style="scrollbar-color:#29157E #FFF4FA; scrollbar-width:thin;">
+				for _, card := range models.Data {
 					@CardTempl(card)
 				}
 			</section>

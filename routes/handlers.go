@@ -12,6 +12,14 @@ import (
 )
 
 func HandleCardList(c *fiber.Ctx) error {
+	shop := partials.MainTempl()
+	layout := layouts.Layout(shop)
+	handler := adaptor.HTTPHandler(templ.Handler(layout))
+
+	return handler(c)
+}
+
+func HandleShop(c *fiber.Ctx) error {
 	var filteredData []models.Item
 	var cardList templ.Component
 	var layout templ.Component
@@ -33,20 +41,20 @@ func HandleCardList(c *fiber.Ctx) error {
 			}
 
 			if len(filteredData) == 0 {
-				cardList = partials.MainTempl(data)
+				cardList = partials.BuyTempl(data)
 				handler = adaptor.HTTPHandler(templ.Handler(cardList))
 			} else {
-				cardList = partials.MainTempl(filteredData)
+				cardList = partials.BuyTempl(filteredData)
 				handler = adaptor.HTTPHandler(templ.Handler(cardList))
 			}
 		} else {
-			cardList = partials.MainTempl(data)
+			cardList = partials.BuyTempl(data)
 			handler = adaptor.HTTPHandler(templ.Handler(cardList))
 		}
 	}
 
 	if requestMethod == "GET" || cardList == nil {
-		cardList = partials.MainTempl(data)
+		cardList = partials.BuyTempl(data)
 		layout = layouts.Layout(cardList)
 		handler = adaptor.HTTPHandler(templ.Handler(layout))
 	}
@@ -54,15 +62,8 @@ func HandleCardList(c *fiber.Ctx) error {
 	return handler(c)
 }
 
-func HandleShop(c *fiber.Ctx) error {
-	shop := partials.BuyTempl()
-	layout := layouts.Layout(shop)
-	handler := adaptor.HTTPHandler(templ.Handler(layout))
-
-	return handler(c)
-}
-
 func HandleCategories(c *fiber.Ctx) error {
+
 	categories := partials.CategoriesTempl()
 	layout := layouts.Layout(categories)
 	handler := adaptor.HTTPHandler(templ.Handler(layout))
@@ -84,4 +85,14 @@ func HandleAbout(c *fiber.Ctx) error {
 	handler := adaptor.HTTPHandler(templ.Handler(layout))
 
 	return handler(c)
+}
+
+func GetSportShoes() []models.Item {
+	var sportShoes []models.Item
+	for _, item := range models.Data {
+		if item.Category == "Sport Shoes" {
+			sportShoes = append(sportShoes, item)
+		}
+	}
+	return sportShoes
 }
