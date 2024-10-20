@@ -20,6 +20,9 @@ templ CardTempl(card models.Item) {
 			/>
 		</section>
 		<button
+			hx-get="/cart"
+			hx-trigger="click"
+			hx-target="main"
 			class="p-2 rounded-full bg-blue-600 text-white mx-5 -mb-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500 absolute top-52 right-2"
 		>
 			<svg
@@ -38,7 +41,7 @@ templ CardTempl(card models.Item) {
 		</button>
 		<section class="p-3">
 			<h3 class="text-gray-700 uppercase">{ card.Title }</h3>
-			<span class="text-gray-500 mt-2">{ card.Price }</span>
+			<span class="text-3xl font-bold text-gray-900 mt-2">{ card.Price }</span>
 		</section>
 	</section>
 }

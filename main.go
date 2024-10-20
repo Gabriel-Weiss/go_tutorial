@@ -11,7 +11,7 @@ import (
 func main() {
 	app := fiber.New()
 	app.Use(cors.New())
-	app.Static("/", "./assets")
+	app.Static("/", "./public")
 	routes.SetupRoutes(app)
 
 	log.Fatal(app.Listen(":3000"))

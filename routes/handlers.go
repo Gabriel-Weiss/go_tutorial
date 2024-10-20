@@ -62,11 +62,10 @@ func HandleShop(c *fiber.Ctx) error {
 	return handler(c)
 }
 
-func HandleCategories(c *fiber.Ctx) error {
+func HandleCart(c *fiber.Ctx) error {
 
-	categories := partials.CategoriesTempl()
-	layout := layouts.Layout(categories)
-	handler := adaptor.HTTPHandler(templ.Handler(layout))
+	cart := partials.CartsTempl()
+	handler := adaptor.HTTPHandler(templ.Handler(cart))
 
 	return handler(c)
 }
