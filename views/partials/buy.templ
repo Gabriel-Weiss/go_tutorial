@@ -4,8 +4,8 @@ import "github.com/Gabriel-Weiss/go_tutorial/models"
 
 templ BuyTempl(cards []models.Item) {
 	<section class="w-full text-center">
-		<h1 class="mt-6 text-[#29157E] text-6xl tracking-tight font-mono font-black animate-pulse">If you want It, we have It</h1>
-		<section class="container mx-auto mt-6 grid grid-cols-1 md:grid-cols-4 gap-4" style="scrollbar-color:#29157E #FFF4FA; scrollbar-width:thin;">
+		<h1 class="mt-6 text-6xl tracking-tight font-mono font-black animate-pulse">If you want It, we have It</h1>
+		<section class="container mx-auto mt-6 grid grid-cols-1 md:grid-cols-4 gap-4" style="scrollbar-color:#000000 #FFF4FA; scrollbar-width:thin;">
 			for _, card := range cards {
 				@CardTempl(card)
 			}

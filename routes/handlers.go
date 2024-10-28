@@ -79,19 +79,9 @@ func HandleContact(c *fiber.Ctx) error {
 }
 
 func HandleAbout(c *fiber.Ctx) error {
-	about := partials.AbouteTempl()
+	about := partials.AboutTempl()
 	layout := layouts.Layout(about)
 	handler := adaptor.HTTPHandler(templ.Handler(layout))
 
 	return handler(c)
-}
-
-func GetSportShoes() []models.Item {
-	var sportShoes []models.Item
-	for _, item := range models.Data {
-		if item.Category == "Sport Shoes" {
-			sportShoes = append(sportShoes, item)
-		}
-	}
-	return sportShoes
 }

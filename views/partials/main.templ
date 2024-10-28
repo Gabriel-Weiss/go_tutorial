@@ -1,28 +1,28 @@
 package partials
 
-import "github.com/Gabriel-Weiss/go_tutorial/models"
+import "github.com/Gabriel-Weiss/go_tutorial/services"
 
 templ MainTempl() {
 	<section class="container mx-auto px-6 overflow-x-hidden">
-		<section class="mt-16 text-center">
-			<h4 class="text-red-600 text-lg italic font-serif font-medium animate-pulse">At Shopee there's alway Black Friday!!!</h4>
-			<h1 class="text-[#29157E] text-6xl tracking-tight font-mono font-black animate-pulse">Grab Your Favorites Before They're Gone</h1>
-			<h3 class="text-[#29157E] font-medium">Sport Shoes</h3>
-			<section class="w-full flex gap-x-4 overflow-x-auto snap-x p-2" style="scrollbar-color:#29157E #FFF4FA; scrollbar-width:thin;">
-				for _, card := range models.Data {
-					@CardTempl(card)
+		<section class="my-5 text-center">
+			<h4 class="text-lg italic font-serif font-medium animate-pulse">At Shopee there's alway Black Friday!!!</h4>
+			<h1 class="text-6xl tracking-tight font-mono font-black animate-pulse">Grab Your Favorites Before They're Gone</h1>
+			<h3 class="font-medium">Sport Shoes</h3>
+			<section class="w-full h-[21rem] flex items-center gap-x-4 overflow-hidden relative">
+				for index, card := range services.GetItemsByCategory("Sport Shoes") {
+					@ItemTempl(index, card, len(services.GetItemsByCategory("Sport Shoes")))
 				}
 			</section>
-			<h3 class="text-[#29157E] font-medium">Clothes Mix</h3>
-			<section class="w-full flex gap-x-4 overflow-x-auto snap-x p-2 relative" style="scrollbar-color:#29157E #FFF4FA; scrollbar-width:thin;">
-				for _, card := range models.Data {
-					@CardTempl(card)
+			<h3 class="font-medium">Accessories</h3>
+			<section class="w-full h-[21rem] flex items-center gap-x-6 overflow-hidden relative">
+				for index, card := range services.GetItemsByCategory("Accessories") {
+					@ItemTempl(index, card, len(services.GetItemsByCategory("Accessories")))
 				}
 			</section>
-			<h3 class="text-[#29157E] font-medium">Accesories</h3>
-			<section class="w-full flex gap-x-4 overflow-x-auto snap-x p-2" style="scrollbar-color:#29157E #FFF4FA; scrollbar-width:thin;">
-				for _, card := range models.Data {
-					@CardTempl(card)
+			<h3 class="font-medium">Clothes Mix</h3>
+			<section class="w-full h-[21rem] flex items-center gap-x-4 overflow-hidden relative">
+				for index, card := range services.GetItemsByCategory("Clothes Mix") {
+					@ItemTempl(index, card, len(services.GetItemsByCategory("Clothes Mix")))
 				}
 			</section>
 		</section>

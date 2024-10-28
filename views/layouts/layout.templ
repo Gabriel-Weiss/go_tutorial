@@ -11,22 +11,23 @@ templ Layout(content templ.Component) {
 			<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png"/>
 			<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png"/>
 			<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png"/>
-			<link rel="preload" as="image" href="assets/austin-distel-wawEfYdpkag-unsplash.jpg"/>
 			<link rel="manifest" href="assets/site.webmanifest"/>
 			<script src="https://cdn.tailwindcss.com"></script>
 			<script src="https://unpkg.com/htmx.org@2.0.2" integrity="sha384-Y7hw+L/jvKeWIRRkqWYfPcvVxHzVzn5REgzbawhxAuQGwX1XWe70vji+VSeHOThJ" crossorigin="anonymous"></script>
+			<link rel="stylesheet" href="css/style.css"/>
 			<title>Shopee | Home</title>
 		</head>
-		<body class="m-0 p-0 h-screen flex flex-col" style="scrollbar-color:#29157E #FFF4FA; scrollbar-width: thin;">
-			<header class="bg-[#29157E]">
+		<body class="m-0 p-0 h-screen flex flex-col" style="scrollbar-color:#000000 #9ca3af; scrollbar-width: thin;">
+			<header class="bg-[#9ca3af]">
 				@partials.HeaderTempl()
 			</header>
-			<main class="bg-[#E5E0FA] flex-1 overflow-y-auto" style="scrollbar-color:#29157E #FFF4FA; scrollbar-width: thin;">
+			<main class="flex-1 overflow-y-auto" style="scrollbar-color:#000000 #9ca3af; scrollbar-width: thin;">
 				@content
 			</main>
-			<footer class="bg-[#29157E]">
+			<footer class="bg-[#9ca3af]">
 				@partials.FooterTempl()
 			</footer>
+			<script src="js/main.js" defer></script>
 		</body>
 	</html>
 }

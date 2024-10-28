@@ -1,0 +1,26 @@
+package partials
+
+import (
+	"fmt"
+	"github.com/Gabriel-Weiss/go_tutorial/models"
+)
+
+css itemImg(image string, index int, items int, duration int) {
+	background: { templ.SafeCSSProperty(fmt.Sprintf("center / cover no-repeat url('%s')",image)) };
+	animation-name: { templ.SafeCSSProperty(fmt.Sprintf("slideImages")) };
+	animation-duration: { templ.SafeCSSProperty(fmt.Sprintf("%ds", duration)) };
+	animation-timing-function: { templ.SafeCSSProperty(fmt.Sprintf("linear")) };
+	animation-delay: { templ.SafeCSSProperty(fmt.Sprintf("calc(%[1]ds / %[2]d * (%[2]d - %[3]d + 1) * -1)", duration, items, index)) };
+	animation-iteration-count: { templ.SafeCSSProperty(fmt.Sprintf("infinite")) };
+}
+
+templ ItemTempl(index int, item models.Item, items int) {
+	<style type="text/css">
+		@keyframes slideImages {
+			to {
+				left: calc(20rem * -1);
+			}
+		}
+	</style>
+	<section class={ "size-80 hover:scale-110 hover:z-10 absolute left-full",itemImg(item.ImageUrl, index, items, 15) }></section>
+}
