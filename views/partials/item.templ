@@ -3,10 +3,12 @@ package partials
 import (
 	"fmt"
 	"github.com/Gabriel-Weiss/go_tutorial/models"
+	"strconv"
 )
 
 css itemImg(image string, index int, items int, duration int) {
 	background: { templ.SafeCSSProperty(fmt.Sprintf("center / cover no-repeat url('%s')",image)) };
+	left: { templ.SafeCSSProperty(fmt.Sprintf("max(calc(20rem * %d), 100%%)", items)) };
 	animation-name: { templ.SafeCSSProperty(fmt.Sprintf("slideImages")) };
 	animation-duration: { templ.SafeCSSProperty(fmt.Sprintf("%ds", duration)) };
 	animation-timing-function: { templ.SafeCSSProperty(fmt.Sprintf("linear")) };
@@ -22,5 +24,29 @@ templ ItemTempl(index int, item models.Item, items int) {
 			}
 		}
 	</style>
-	<section class={ "size-80 hover:scale-110 hover:z-10 absolute left-full",itemImg(item.ImageUrl, index, items, 15) }></section>
+	<section hx-get={ string(templ.URL("/shop/" + strconv.Itoa(item.Id))) } hx-target="main" hx-push-url={ string(templ.URL("/shop/" + strconv.Itoa(item.Id))) } class={ "size-80 hover:scale-110 hover:z-10 absolute",itemImg(item.ImageUrl, index, items, 20) }>
+		<section class="w-full h-full relative">
+			<section class="absolute flex flex-col items-end h-fit bottom-2 right-0 left-0 pr-2 text-slate-500 font-extrabold text-lg bg-gradient-to-r from-transparent to-slate-300">
+				<section class="">{ item.Title }</section>
+				<section class="flex items-center">
+					<svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+						<path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"></path>
+					</svg>
+					<svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+						<path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"></path>
+					</svg>
+					<svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+						<path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"></path>
+					</svg>
+					<svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+						<path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"></path>
+					</svg>
+					<svg class="w-4 h-4 ms-1 text-gray-300 dark:text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+						<path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"></path>
+					</svg>
+				</section>
+				<section class="">{ item.Price }</section>
+			</section>
+		</section>
+	</section>
 }

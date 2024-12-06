@@ -1,6 +1,9 @@
 package partials
 
-import "github.com/Gabriel-Weiss/go_tutorial/models"
+import (
+	"github.com/Gabriel-Weiss/go_tutorial/models"
+	"strconv"
+)
 
 func testImgUrl(imgUrl string) string {
 	const imageSrc = "https://img.icons8.com/?size=100&id=bjHuxcHTNosO&format=png&color=000000"
@@ -11,12 +14,9 @@ func testImgUrl(imgUrl string) string {
 }
 
 templ CardTempl(card models.Item) {
-	<section class="w-80 mx-auto rounded-md shadow-md overflow-hidden relative flex-none snap-center">
-		<section class="w-full">
-			<img
-				class="h-56 w-full bg-cover bg-center"
-				src={ testImgUrl(card.ImageUrl) }
-			/>
+	<section hx-boost="true" class="w-80 mx-auto rounded-md shadow-md overflow-hidden relative flex-none snap-center">
+		<section class="w-full" hx-get={ "/shop/" + strconv.Itoa(card.Id) } hx-push-url={ "/shop/" + strconv.Itoa(card.Id) } hx-target="main">
+			<img class="h-56 w-full bg-cover bg-center" src={ testImgUrl(card.ImageUrl) }/>
 		</section>
 		<button
 			hx-get="/cart"

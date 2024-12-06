@@ -3,10 +3,10 @@ package partials
 templ CartsTempl() {
 	<section class="grid place-content-center p-9">
 		<h3 class="text-5xl py-2 text-center">Your products</h3>
-		<section class="flex gap-x-2">
+		<section class="flex flex-col md:flex-row gap-x-2">
 			<section>
 				<table class="w-full text-sm text-left text-gray-500">
-					<thead class="text-xs text-gray-700 uppercase bg-gray-50">
+					<thead class="text-xs text-gray-700 uppercase bg-gray-50 hidden md:table-header-group">
 						<tr>
 							<th scope="col" class="px-16 py-3">
 								<span class="sr-only">Image</span>
@@ -27,13 +27,13 @@ templ CartsTempl() {
 					</thead>
 					<tbody>
 						<tr class="bg-white border-b hover:bg-gray-50 align-middle">
-							<td class="align-middle">
+							<td class="align-middle invisible md:visible">
 								<img src="https://img.icons8.com/?size=100&id=bjHuxcHTNosO&format=png&color=000000" class="mx-auto w-5 md:w-16 max-w-full max-h-full" alt="Apple Watch"/>
 							</td>
-							<td class="px-6 py-4 font-semibold text-gray-900">
+							<td class="md:px-6 md:py-4 px-2 py-2 font-semibold text-gray-900">
 								Apple Watch
 							</td>
-							<td class="px-6 py-4">
+							<td class="md:px-6 md:py-4 px-2 py-2">
 								<section class="flex items-center">
 									<button class="inline-flex items-center justify-center p-1 me-3 text-sm font-medium h-6 w-6 text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200" type="button">
 										<span class="sr-only">Quantity button</span>
@@ -42,7 +42,7 @@ templ CartsTempl() {
 										</svg>
 									</button>
 									<section>
-										<input type="number" id="first_product" class="bg-gray-50 w-14 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-2.5 py-1" placeholder="1" required/>
+										<input type="number" oninput="this.value = this.value.replace(/[^0-9.]/g, '');" pattern="\d*" id="first_product" class="bg-gray-50 w-8 md:w-14 border border-gray-300 text-gray-900 text-sm md:text-center rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-2.5 py-1" placeholder="1" required/>
 									</section>
 									<button class="inline-flex items-center justify-center h-6 w-6 p-1 ms-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200" type="button">
 										<span class="sr-only">Quantity button</span>
@@ -52,21 +52,21 @@ templ CartsTempl() {
 									</button>
 								</section>
 							</td>
-							<td class="px-6 py-4 font-semibold text-gray-900">
+							<td class="md:px-6 md:py-4 px-2 py-2 font-semibold text-gray-900">
 								$599
 							</td>
-							<td class="px-6 py-4">
+							<td class="md:px-6 md:py-4 px-2 py-2">
 								<a href="#" class="font-medium text-red-600 hover:underline">Remove</a>
 							</td>
 						</tr>
 						<tr class="bg-white border-b hover:bg-gray-50 align-middle">
-							<td class="align-middle">
+							<td class="align-middle invisible md:visible">
 								<img src="https://img.icons8.com/?size=100&id=bjHuxcHTNosO&format=png&color=000000" class="mx-auto w-5 md:w-16 max-w-full max-h-full" alt="Apple iMac"/>
 							</td>
-							<td class="px-6 py-4 font-semibold text-gray-900">
+							<td class="md:px-6 md:py-4 px-2 py-2 font-semibold text-gray-900">
 								iMac 27"
 							</td>
-							<td class="px-6 py-4">
+							<td class="md:px-6 md:py-4 px-2 py-2">
 								<section class="flex items-center">
 									<button class="inline-flex items-center justify-center p-1 text-sm font-medium h-6 w-6 text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200" type="button">
 										<span class="sr-only">Quantity button</span>
@@ -75,7 +75,7 @@ templ CartsTempl() {
 										</svg>
 									</button>
 									<section class="ms-3">
-										<input type="number" id="first_product" class="bg-gray-50 w-14 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-2.5 py-1" placeholder="1" required/>
+										<input type="number" oninput="this.value = this.value.replace(/[^0-9.]/g, '');" pattern="\d*" id="first_product" class="bg-gray-50 w-8 md:w-14 border border-gray-300 text-gray-900 text-sm md:text-center rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-2.5 py-1" placeholder="1" required/>
 									</section>
 									<button class="inline-flex items-center justify-center h-6 w-6 p-1 ms-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200" type="button">
 										<span class="sr-only">Quantity button</span>
@@ -85,21 +85,21 @@ templ CartsTempl() {
 									</button>
 								</section>
 							</td>
-							<td class="px-6 py-4 font-semibold text-gray-900">
+							<td class="md:px-6 md:py-4 px-2 py-2 font-semibold text-gray-900">
 								$2499
 							</td>
-							<td class="px-6 py-4">
+							<td class="md:px-6 md:py-4 px-2 py-2">
 								<a href="#" class="font-medium text-red-600 hover:underline">Remove</a>
 							</td>
 						</tr>
 						<tr class="bg-white border-b hover:bg-gray-50 align-middle">
-							<td class="align-middle">
+							<td class="align-middle invisible md:visible">
 								<img src="https://img.icons8.com/?size=100&id=bjHuxcHTNosO&format=png&color=000000" class="mx-auto w-5 md:w-16 max-w-full max-h-full" alt="iPhone 12"/>
 							</td>
-							<td class="px-6 py-4 font-semibold text-gray-900">
+							<td class="md:px-6 md:py-4 px-2 py-2 font-semibold text-gray-900">
 								IPhone 12 
 							</td>
-							<td class="px-6 py-4">
+							<td class="md:px-6 md:py-4 px-2 py-2">
 								<section class="flex items-center">
 									<button class="inline-flex items-center justify-center p-1 text-sm font-medium h-6 w-6 text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200" type="button">
 										<span class="sr-only">Quantity button</span>
@@ -108,7 +108,7 @@ templ CartsTempl() {
 										</svg>
 									</button>
 									<section class="ms-3">
-										<input type="number" id="first_product" class="bg-gray-50 w-14 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-2.5 py-1" placeholder="1" required/>
+										<input type="number" oninput="this.value = this.value.replace(/[^0-9.]/g, '');" pattern="\d*" id="first_product" class="bg-gray-50 w-8 md:w-14 border border-gray-300 text-gray-900 text-sm md:text-center rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-2.5 py-1" placeholder="1" required/>
 									</section>
 									<button class="inline-flex items-center justify-center h-6 w-6 p-1 ms-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200" type="button">
 										<span class="sr-only">Quantity button</span>
@@ -118,10 +118,10 @@ templ CartsTempl() {
 									</button>
 								</section>
 							</td>
-							<td class="px-6 py-4 font-semibold text-gray-900">
+							<td class="md:px-6 md:py-4 px-2 py-2 font-semibold text-gray-900">
 								$999
 							</td>
-							<td class="px-6 py-4">
+							<td class="md:px-6 md:py-4 px-2 py-2">
 								<a href="#" class="font-medium text-red-600 hover:underline">Remove</a>
 							</td>
 						</tr>
@@ -130,31 +130,31 @@ templ CartsTempl() {
 			</section>
 			<section class="relative overflow-x-auto">
 				<table class="w-full text-lg text-left text-gray-500">
-					<thead class="text-xs text-gray-700 uppercase bg-gray-50">
+					<thead class="text-xs text-gray-700 uppercase bg-gray-50 hidden md:table-header-group">
 						<tr><th colspan="2" class="px-6 py-3">Cart totals</th></tr>
 					</thead>
 					<tbody>
 						<tr class="bg-white border-b">
-							<th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+							<th scope="row" class="md:px-6 md:py-4 px-2 py-2 font-medium text-gray-900 whitespace-nowrap">
 								Subtotal
 							</th>
-							<td class="px-6 py-4">
+							<td class="md:px-6 md:py-4 px-2 py-2">
 								$1999
 							</td>
 						</tr>
 						<tr class="bg-white border-b">
-							<th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+							<th scope="row" class="md:px-6 md:py-4 px-2 py-2 font-medium text-gray-900 whitespace-nowrap">
 								Discount
 							</th>
-							<td class="px-6 py-4">
+							<td class="md:px-6 md:py-4 px-2 py-2">
 								$99
 							</td>
 						</tr>
 						<tr class="bg-white">
-							<th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+							<th scope="row" class="md:px-6 md:py-4 px-2 py-2 font-medium text-gray-900 whitespace-nowrap">
 								Total
 							</th>
-							<td class="px-6 py-4">
+							<td class="md:px-6 md:py-4 px-2 py-2">
 								$1900
 							</td>
 						</tr>

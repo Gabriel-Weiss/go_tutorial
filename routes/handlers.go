@@ -4,6 +4,7 @@ import (
 	"strings"
 
 	"github.com/Gabriel-Weiss/go_tutorial/models"
+	"github.com/Gabriel-Weiss/go_tutorial/services"
 	"github.com/Gabriel-Weiss/go_tutorial/views/layouts"
 	"github.com/Gabriel-Weiss/go_tutorial/views/partials"
 	"github.com/a-h/templ"
@@ -63,7 +64,6 @@ func HandleShop(c *fiber.Ctx) error {
 }
 
 func HandleCart(c *fiber.Ctx) error {
-
 	cart := partials.CartsTempl()
 	handler := adaptor.HTTPHandler(templ.Handler(cart))
 
@@ -82,6 +82,39 @@ func HandleAbout(c *fiber.Ctx) error {
 	about := partials.AboutTempl()
 	layout := layouts.Layout(about)
 	handler := adaptor.HTTPHandler(templ.Handler(layout))
+
+	return handler(c)
+}
+
+func HandleDetails(c *fiber.Ctx) error {
+	itemId, err := c.ParamsInt("id")
+	if err != nil {
+		return err
+	}
+
+	item, err := services.GetItemById(itemId)
+	if err != nil {
+		return err
+	}
+	detail := partials.DetailsTempl(item)
+	handler := adaptor.HTTPHandler(templ.Handler(detail))
+
+	return handler(c)
+}
+
+func HandleCategories(c *fiber.Ctx) error {
+	requestMethod := c.Method()
+	var data []models.Item
+
+	if requestMethod == "POST" {
+		searchArg := c.FormValue("category")
+		if searchArg != "" {
+			data = services.GetItemsByCategory(searchArg)
+		}
+	}
+
+	cardList := partials.BuyTempl(data)
+	handler := adaptor.HTTPHandler(templ.Handler(cardList))
 
 	return handler(c)
 }

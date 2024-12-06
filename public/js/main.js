@@ -18,5 +18,3 @@ function showMenu() {
     }
   }
 }
-
-function scrollImages(params) {}
